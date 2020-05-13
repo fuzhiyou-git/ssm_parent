@@ -1,0 +1,49 @@
+
+
+#select {
+    margin-top: 18px;
+}
+
+/*标题的样式*/
+table thead tr th {
+    font-size: 1.9ch;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*内容的CSS样式*/
+table tbody tr td {
+    font-size: 1.68ch;
+    font-weight: bold;
+    color: #4b646f;
+    text-align: center;
+}
+
+div input[name="urlCondition"] {
+    float: right;
+    border-radius: 5px/10px;
+    margin-right: 5px;
+    font-weight: bold;
+    color: black;
+    padding-left: 5px;
+    width: 18ch;
+}
+
+div input[name="permissionNameCondition"] {
+    float: right;
+    width: 18ch;
+    border-radius: 5px/10px;
+    margin-right: 2px;
+    font-weight: bold;
+    color: black;
+    padding-left: 5px;
+}
+
+/*搜索的按钮*/
+#baidu {
+    float: right;
+    background-color: #3c3c3c;
+    color: white;
+    border-radius: 5px/10px;
+    margin-right: 7px;
+}

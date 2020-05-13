@@ -1,0 +1,13 @@
+/*标题的样式*/
+form div[class="col-md-2 title"], form div[class="col-md-2 title rowHeight2x"] {
+    font-weight: bold;
+    color: #8a6d3b;
+}
+
+/*内容的样式*/
+
+form div input[class="form-control"] {
+    border-radius: 5px/10px;
+    font-weight: bold;
+
+}

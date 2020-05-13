@@ -1,0 +1,27 @@
+/*按钮的样式*/
+form section div button[type="button"] {
+    border-radius: 5px/8px;
+    font-weight: bold;
+}
+
+/*标题的样式*/
+form section div[class="col-md-2 title"] {
+    font-size: 1.8ch;
+    font-weight: bold;
+    color: #5d59a6;
+}
+
+/*输入内容方框的样式*/
+form section div input[class="form-control"] {
+    font-size: 1.68ch;
+    font-weight: bold;
+    border-radius: 15px/20px;
+}
+
+form table tbody[id="tbody_role"] {
+    font-size: 1.68ch;
+    color: #985f0d;
+    font-weight: bold;
+}
+
+

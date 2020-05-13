@@ -1,0 +1,23 @@
+/*标题的样式*/
+table thead tr th {
+    font-size: 1.9ch;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*内容的样式*/
+table tbody tr td {
+    font-size: 1.68ch;
+    font-weight: bold;
+    color: #4b646f;
+    text-align: center;
+}
+
+/*分页数据的样式*/
+span[class="pages_total"] {
+    font-weight: bold;
+    font-size: 2ch;
+    color: #9f191f;
+}
+
+
