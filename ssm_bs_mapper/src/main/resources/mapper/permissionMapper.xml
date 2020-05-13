@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.mapper.PermissionMapper">
+
+    <select id="findAll" resultType="permission">
+
+        select * from permission
+        <where>
+            <if test="map.url!=null and map.url!=''">
+                and url like CONCAT('%' ,#{map.url}, '%')
+            </if>
+
+            <if test="map.permissionName!=null and map.permissionName!=''">
+                and permissionName like CONCAT('%' ,#{map.permissionName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findAndAllPermissionByRoleName" resultType="permission">
+        SELECT * FROM permission WHERE id IN
+          (SELECT permissionId FROM role_permission WHERE roleId IN
+           (SELECT id FROM role WHERE roleName=#{roleName}))
+    </select>
+</mapper>

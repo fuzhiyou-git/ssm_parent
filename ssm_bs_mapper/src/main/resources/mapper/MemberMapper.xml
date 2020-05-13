@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.itheima.mapper.MemberMapper">
+
+    <select id="findAll" resultType="member">
+        select * from member
+        <where>
+            <if test="map.email!=null and map.email!=''">
+                and email like CONCAT('%' ,#{map.email}, '%')
+            </if>
+            <if test="map.phoneNum!=null and map.phoneNum!=''">
+                and phoneNum like CONCAT('%' ,#{map.phoneNum}, '%')
+            </if>
+            <if test="map.name!=null and map.name!=''">
+                and name like CONCAT('%' ,#{map.name}, '%')
+            </if>
+        </where>
+    </select>
+
+
+    <insert id="addProductToMember">
+        insert into member_product (memberId,productId) values
+        <foreach collection="productIds" item="productId" separator=",">
+            (#{memberId},#{productId})
+        </foreach>
+    </insert>
+
+    <!--查询会员未添加的产品-->
+    <select id="findAllNoProductByMemberId" parameterType="map" resultType="product">
+        select * from product where id not in
+        (select productId from member_product where memberId=#{memberId})
+
+        <if test="map.productName!=null and map.productName!=''">
+            and productName like CONCAT('%' ,#{map.productName}, '%')
+        </if>
+        <if test="map.productNum!=null and map.productNum!=''">
+            and productNum like CONCAT('%' ,#{map.productNum}, '%')
+        </if>
+    </select>
+</mapper>

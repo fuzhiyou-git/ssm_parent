@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.mapper.SysLogMapper">
+
+    <select id="findAll" resultType="sysLog">
+        select * from syslog
+        <where>
+            <if test="username!=null and username!=''">
+                and username like CONCAT('%' ,#{username}, '%')
+            </if>
+        </where>
+    </select>
+
+    <delete id="delSelected" parameterType="list">
+        delete from syslog where
+        <foreach collection="ids" item="id" separator=" or ">
+            id=#{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--产品查询模块多条件查询 -->
+<mapper namespace="com.itheima.mapper.ProductMapper">
+    <!-- 多条件查询,根据产品名称,出发城市查询出符合条件的产品-->
+    <!-- <select id="findProductByNameAndCity" resultType="product">
+         SELECT * FROM product
+         <where>
+             <if test="productName!=null and productName!=''">
+                 and productName like CONCAT('%' ,#{productName}, '%')
+             </if>
+             <if test="cityName!=null and cityName=''">
+                 and cityName like CONCAT('%' ,#{cityName}, '%')
+             </if>
+         </where>
+     </select>-->
+
+    <!--多条件查询,根据产品名称,产品价格,出发城市查询出符合条件的产品-->
+    <!-- <select id="findProductByMany" resultType="product">
+         SELECT * FROM product
+         <where>
+             <if test="productName!=null and productName!=''">
+                 and productName like CONCAT('%' ,#{productName}, '%')
+             </if>
+             and productPrice between #{floor} and #{ceil}
+             <if test="cityName!=null and cityName!=''">
+                 and cityName like CONCAT('%' ,#{cityName}, '%')
+             </if>
+             order by productPrice desc
+         </where>
+     </select>-->
+
+
+    <!--删除选中-->
+    <delete id="delSelected">
+        delete from product where
+        <foreach collection="ids" item="id" separator=" or ">
+            id=#{id}
+        </foreach>
+    </delete>
+
+    <!--多条件查询-->
+    <select id="findAllNoProductPrice" resultType="product">
+        SELECT * FROM product
+        <where>
+            <if test="map.cityName!=null and map.cityName!=''">
+                and cityName like CONCAT('%' ,#{map.cityName}, '%')
+            </if>
+
+            <if test="map.productName!=null and map.productName!=''">
+                and productName like CONCAT('%' ,#{map.productName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findAll" resultType="product">
+        SELECT * FROM product
+        <where>
+            <if test="map.cityName!=null and map.cityName!=''">
+                and cityName like CONCAT('%' ,#{map.cityName}, '%')
+            </if>
+
+            <if test="map.productName!=null and map.productName!=''">
+                and productName like CONCAT('%' ,#{map.productName}, '%')
+            </if>
+            and productPrice between #{map.productPrice} and #{map.productPrice_t}
+        </where>
+    </select>
+
+    <select id="findMemberByProductIds" resultType="int">
+        select COUNT(*) from member_product where
+        <foreach collection="productIds" item="productId" separator=" or ">
+            productId=#{productId}
+        </foreach>
+
+    </select>
+</mapper>
